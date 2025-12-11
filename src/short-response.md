@@ -42,11 +42,32 @@ console.log(getLetterGrade(65)); // This should print "Your grade is: F"
 
 **Part A:**
 
-Your response...
+- This bug occurs due to `letter` being redeclared underneath each part of the `if else` statement. Since  `letter` was first declared outside of the `if` statement, there is no need to redeclare `letter` with `let` each time you want to reassign the variable. 
 
 **Part B:**
 
-Your response...
+- To fix this, you can remove every instance of `let` after `letter` is declared. This is shown below:
+```js
+const getLetterGrade = (score) => {
+  let letter;
+  if (score >= 90) {
+    letter = "A";
+  } else if (score >= 80) {
+    letter = "B";
+  } else if (score >= 70) {
+    letter = "C";
+  } else {
+    letter = "F";
+  }
+
+  return "Your grade is: " + letter;
+}
+
+console.log(getLetterGrade(95)); // This should print "Your grade is: A"
+console.log(getLetterGrade(82)); // This should print "Your grade is: B"
+console.log(getLetterGrade(74)); // This should print "Your grade is: C"
+console.log(getLetterGrade(65)); // This should print "Your grade is: F"
+```
 
 ---
 
@@ -69,20 +90,20 @@ console.log(originalSettings.volume);
 
 **Part A:**
 
-Your response...
+- What will be logged into the console is the value of `originalSettings.volume` which will be `75`. This happens because when `newSettings` is being declared, `newSettings` is not copying the properties of `originalSettings`, but holding the reference. So when `newSettings.volume` gets changed to `75`, it will change `originalSettings`.
 
 **Part B:**
 
-Your response...
+- To fix this issue, you can use the spread operator to fill in a new object which will fill `newSettings` with the same properties as `originalSettings`, making it a true copy. 
 
 **Corrected Code:**
 
 ```js
-// Fix this code so newSettings is a true copy
 const originalSettings = { volume: 50, brightness: 80 };
-const newSettings = originalSettings;
+const newSettings = {...originalSettings};
 newSettings.volume = 75;
-console.log(originalSettings.volume);
+console.log(originalSettings.volume); // 50
+console.log(newSettings.volume) // 75
 ```
 
 ---
@@ -110,4 +131,5 @@ Walk through what happens in the first iteration of filter:
 
 ### Response 3
 
-Your response...
+- In the first iteration of `.filter`, `product` refers to each element in the `products` array. So during this iteration, `product` is the first object with the `name` property `"Laptop"`. 
+- Since the callback function is checking if the `inStock` property is truthy and `"Laptop"` has `inStock` as `true`, `"Laptop"` will then be pushed into a new array as it meets the requirements.

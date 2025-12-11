@@ -8,24 +8,32 @@ const movies = [
 ];
 
 // Return an array of only movies with box office earnings over $300 million.
-const getBlockbusters = (movies) => {
-
+const getBlockbusters = (arr) => {
+  return arr.filter((movie) => movie.boxOffice > 300);
 };
+console.log(getBlockbusters(movies));
 
 // Return an array of the titles of all movies.
-const getMovieTitles = (movies) => {
-
+const getMovieTitles = (arr) => {
+  return arr.map((movie) => movie.title);
 };
+console.log(getMovieTitles(movies));
 
 // Return the total box office earnings across all movies.
-const getTotalBoxOffice = (movies) => {
-
+const getTotalBoxOffice = (arr) => {
+  return arr.reduce((total, movie) => {
+    return total + movie.boxOffice;
+  }, 0);
 };
+console.log(getTotalBoxOffice(movies));
 
 // Return an array of the titles of all movies made in 2018 or later.
-const getRecentMovieTitles = (movies) => {
-
+const getRecentMovieTitles = (arr) => {
+  return arr
+    .filter((movie) => movie.year >= 2018)
+    .map((movie) => movie.title);
 };
+console.log(getRecentMovieTitles(movies));
 
 module.exports = {
   getBlockbusters,
